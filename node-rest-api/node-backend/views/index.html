@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Node.js upload images</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		/>
+		<style>
+			div.preview-images > img {
+				width: 30%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 mt-3">
+					<h4>Node.js upload images - text bezkoder.com</h4>
+
+					<form
+						class="mt-4"
+						action="/api/add-faved-image"
+						method="POST"
+						enctype="multipart/form-data"
+					>
+						<div class="form-group">
+							<input
+								type="file"
+								name="image"
+								id="input-files"
+								class="form-control-file border"
+							/>
+
+							<input type="text" name="name" id="" />
+							<input type="text" name="desc" id="" />
+							<input type="checkbox" name="isFaved" id="" />
+						</div>
+						<button type="submit" class="btn btn-primary">
+							Submit
+						</button>
+					</form>
+
+					<form
+						class="mt-4"
+						action="/api/fav-image/644fc31af110151bac3ef917"
+						method="POST"
+						enctype="multipart/form-data"
+					>
+						<button type="submit">Favorite image 0</button>
+					</form>
+					<form
+						class="mt-4"
+						action="/api/unfav-image/644fc31af110151bac3ef917"
+						method="POST"
+						enctype="multipart/form-data"
+					>
+						<button type="submit">Unfavorite image 0</button>
+					</form>
+
+					<h4>Add user</h4>
+					<form
+						class="mt-4"
+						action="/api/add-user"
+						method="POST"
+					>
+						<div class="form-group">
+							<input type="text" name="username" id="" />
+							<input type="text" name="password" id="" />
+						</div>
+						<button type="submit" class="btn btn-primary">
+							Submit
+						</button>
+					</form>
+
+					<h4>User Login</h4>
+					<form action="/api/login-user" method="POST">
+						<input type="text" name="username" id="" />
+						<input type="text" name="password" id="" />
+						<button type="submit" class="btn btn-primary">
+							Submit
+						</button>
+					</form>
+
+					<h4>Get logged in user</h4>
+					<form action="/api/get-logged-in-user" method="GET">
+						<button type="submit" class="btn btn-primary">
+							Submit
+						</button>
+					</form>
+
+					<h4>Log out user</h4>
+					<form action="/api/logout-user" method="GET">
+						<button type="submit" class="btn btn-primary">
+							Submit
+						</button>
+					</form>
+				</div>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="preview-images"></div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script>
+			$(document).ready(function () {
+				let imagesPreview = function (
+					input,
+					placeToInsertImagePreview
+				) {
+					if (input.files) {
+						let filesAmount = input.files.length;
+						for (i = 0; i < filesAmount; i++) {
+							let reader = new FileReader();
+							reader.onload = function (event) {
+								$($.parseHTML("<img>"))
+									.attr("src", event.target.result)
+									.appendTo(placeToInsertImagePreview);
+							};
+							reader.readAsDataURL(input.files[i]);
+						}
+					}
+				};
+				$("#input-files").on("change", function () {
+					imagesPreview(this, "div.preview-images");
+				});
+			});
+		</script>
+	</body>
+</html>

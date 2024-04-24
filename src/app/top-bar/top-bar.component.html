@@ -1,0 +1,26 @@
+<a [routerLink]="['/']">
+	<h1><i class="fa fa-camera-retro icon"></i> Socialite</h1>
+</a>
+
+<div class="mx-3" *ngIf="is_someone_logged_in">
+	<a [routerLink]="['my-post']" style="color: white;">
+		  My Posts
+	</a>
+
+	<a [routerLink]="['upload']">
+		<button type="button" class="btn btn-primary mx-3">
+		  <i class="fa fa-upload icon"></i>
+		  Upload
+		</button>
+	</a>
+
+	<a (click)="logout()">
+		<button type="button" class="btn btn-warning mx-3">
+		  <i class="fa fa-sign-out icon"></i>
+		  Logout
+		</button>
+	</a>
+	
+
+</div>
+	

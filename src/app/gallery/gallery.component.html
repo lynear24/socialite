@@ -1,0 +1,30 @@
+<h1 class="my-4 text-center">Hello, {{ logged_in_user }}</h1>
+
+<div class="gallery">
+  <div *ngFor="let i of images; index as index">
+    <div *ngIf="i; else loading">
+      <a [title]="i.name + ' details'" [routerLink]="['/post', i._id]">
+        <img [src]="i.imgurl" class="pic" />
+      </a>
+
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+          <a [title]="i.name + ' details'" [routerLink]="['/post', i._id]">
+            <h3>{{ i.name }}</h3>
+          </a>
+          <p *ngIf="i.desc">{{ i.desc }}</p>
+        </div>
+
+        <div class="align-self-center">
+          <button class="btn btn-danger" (click)="delete(i._id, i, index)">
+            Delete
+          </button>
+        </div>
+      </div>
+
+      <hr class="hr" />
+    </div>
+  </div>
+</div>
+
+<ng-template #loading> Loading stuff in ngIf... </ng-template>

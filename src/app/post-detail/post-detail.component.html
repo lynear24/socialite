@@ -1,0 +1,13 @@
+<div class="p-5" *ngIf="selectedPost; else loading">
+    <div class="d-flex flex-column">
+      <h2>{{ selectedPost.by_username }}</h2>
+      <img [src]="selectedPost.imgurl" class="pic" />
+      <h2>{{ selectedPost.name }}</h2>
+      <p>{{ selectedPost.desc }}</p>
+    </div>
+    <button [routerLink]="['/']">Close</button>
+</div>
+
+<ng-template #loading>
+    Loading stuff in ngIf...
+</ng-template>

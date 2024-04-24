@@ -1,0 +1,22 @@
+<div class="gallery">
+  <br />
+  <h2>My Posts</h2>
+  <div *ngFor="let post of myPosts; let index = index">
+    <div *ngIf="post; else loading">
+      <br />
+      <a [title]="post.name + ' details'" [routerLink]="['/post', post._id]">
+        <img [src]="post.imgurl" class="pic" />
+        <h2>{{ post.name }}</h2>
+      </a>
+      <p>{{ post.desc }}</p>
+
+      <div class="align-self-center">
+        <button class="btn btn-danger" (click)="delete(post._id, post, index)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loading> Loading stuff in ngIf... </ng-template>
+</div>
